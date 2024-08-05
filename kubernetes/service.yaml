@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: solar-system-svc
+  namespace: ${NAMESPACE}
+spec:
+  selector:
+    app: solar-system
+  ports:
+  - port: 3000
+    protocol: TCP
+    targetPort: 3000
+    nodePort: ${NODEPORT}
+  type: NodePort
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-svc
+  namespace: ${NAMESPACE}
+spec:
+  selector:
+    app: mongo
+  ports:
+  - port: 27017
+    protocol: TCP
+    targetPort: 27017
+  type: ClusterIP
